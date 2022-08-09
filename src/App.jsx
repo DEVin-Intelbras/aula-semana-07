@@ -1,12 +1,16 @@
 import './App.css';
+import { Footer } from './components/Footer/Footer';
 import { Header } from './components/Header/Header';
+import { Post } from './components/Post/Post';
 
-function App() {
+export function App() {
   return (
-    <div>
+    <div className='container'>
       <Header />
+
+      <Post />
+
+      <Footer />
     </div>
   );
 }
-
-export default App;
