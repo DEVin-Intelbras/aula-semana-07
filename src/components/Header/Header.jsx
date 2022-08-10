@@ -1,11 +1,9 @@
-import { Botao } from '../Botao/Botao';
+import './header.css';
 
 export function Header() {
   return (
-    <div>
-      <h1>Olá Mundo!</h1>
-
-      <Botao />
-    </div>
+    <header className='titulo'>
+      <h1>Meu blog</h1>
+    </header>
   );
 }
