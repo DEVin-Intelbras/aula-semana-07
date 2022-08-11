@@ -1,46 +1,40 @@
+import { Fragment } from 'react';
 import './App.css';
-import { Post } from './components/Post/Post';
-
-import capaPost1 from './assets/capa.jpeg';
-import capaPost2 from './assets/vite.svg';
-import { Card } from './components/Card/Card';
-import { Layout } from './components/Layout/Layout';
+import { Pessoa } from './components/Pessoa/Pessoa';
 
 export function App() {
-  const onClick = (event) => {
-    console.log(event);
-    console.log('Clicou');
+  const pessoas = [
+    { id: 1, nome: 'Anderson', idade: 20, apelido: 'Ola' },
+    { id: 2, nome: 'Thais', idade: 20 },
+    { id: 3, nome: 'Leandro', idade: 20 },
+  ];
+
+  const onClick = (event, id) => {
+    console.log(event, id);
   };
 
   return (
-    <Layout>
-      <Card>
-        <h1>Meu Card</h1>
-        <p>Teste</p>
-        <footer>Rodapé</footer>
-      </Card>
+    <ul>
+      {pessoas.map((pessoa) => {
+        return (
+          <li key={pessoa.id}>
+            <p>{pessoa.nome}</p>
+            <p>{pessoa.idade}</p>
+
+            {pessoa.apelido && <p>{pessoa.apelido}</p>}
+
+            <button onClick={(event) => onClick(event, pessoa.id)}>Com parametro</button>
+            <br />
+            <button onClick={onClick}>Sem parametro</button>
+          </li>
+        );
+      })}
       <br />
-      <Card>
-        <img src={capaPost1} alt='aas' />
-        <p>Teste</p>
-      </Card>
-
-      <Post
-        titulo='Minha matéria'
-        descricao='ljansjansjans janjnkjansjansjansjk ja sja '
-        capa={capaPost1}
-        data={new Date().toLocaleDateString()}
-        handleClick={onClick}
-      />
-
-      <Post
-        titulo='Nossa matéria'
-        descricao='saslokomiwq w asuhhu auhsuashua iqjwioqjwiqw'
-        capa={capaPost2}
-        handleClick={() => console.log('arrow')}
-      />
-
-      <Post descricao='aksjaiksjka saksjkajsaks' handleClick={onClick} />
-    </Layout>
+      <hr />
+      <br />
+      {pessoas.map((pessoa) => {
+        return <Pessoa key={`pessoa-${pessoa.id}`} pessoa={pessoa} />;
+      })}
+    </ul>
   );
 }
