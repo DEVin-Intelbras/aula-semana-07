@@ -1,40 +1,34 @@
-import { Fragment } from 'react';
 import './App.css';
 import { Pessoa } from './components/Pessoa/Pessoa';
 
 export function App() {
-  const pessoas = [
-    { id: 1, nome: 'Anderson', idade: 20, apelido: 'Ola' },
-    { id: 2, nome: 'Thais', idade: 20 },
-    { id: 3, nome: 'Leandro', idade: 20 },
-  ];
+  const loading = false;
+  const erro = false;
+  const pessoas = [];
 
-  const onClick = (event, id) => {
-    console.log(event, id);
-  };
+  if (loading) {
+    return <p>loading...</p>;
+  }
+
+  if (erro) {
+    return <p>Erro</p>;
+  }
 
   return (
-    <ul>
-      {pessoas.map((pessoa) => {
-        return (
-          <li key={pessoa.id}>
-            <p>{pessoa.nome}</p>
-            <p>{pessoa.idade}</p>
+    <div>
+      <header>
+        <h1>Condicional exemplos</h1>
+      </header>
 
-            {pessoa.apelido && <p>{pessoa.apelido}</p>}
-
-            <button onClick={(event) => onClick(event, pessoa.id)}>Com parametro</button>
-            <br />
-            <button onClick={onClick}>Sem parametro</button>
-          </li>
-        );
-      })}
-      <br />
-      <hr />
-      <br />
-      {pessoas.map((pessoa) => {
-        return <Pessoa key={`pessoa-${pessoa.id}`} pessoa={pessoa} />;
-      })}
-    </ul>
+      {pessoas.length === 0 ? (
+        <p>Sem Itens</p>
+      ) : (
+        <ul>
+          {pessoas.map((element) => (
+            <Pessoa key={element.id} pessoa={element} />
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }

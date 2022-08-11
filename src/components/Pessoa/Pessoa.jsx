@@ -5,8 +5,14 @@ export const Pessoa = ({ pessoa }) => {
     <div>
       <p>Nome: </p>
       <strong>{pessoa.nome}</strong>
-      <p>Idade: </p>
-      <strong>{pessoa.idade}</strong>
+
+      {pessoa.idade !== null && (
+        <>
+          <p>Idade: </p>
+          <strong>{pessoa.idade}</strong>
+        </>
+      )}
+
       <p>Apelido: </p>
       <strong>{pessoa.apelido || 'Sem apelido'}</strong>
     </div>
